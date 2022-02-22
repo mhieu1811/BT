@@ -1,0 +1,19 @@
+﻿@page
+@model Rookie.Ecom.Customer.Pages.CustomerModel
+@{
+}
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Desc</th>
+    </tr>
+    <tr>
+        @foreach(var m in Model.Category)
+        {
+            <td>@m.Id</td>
+            <td>@m.Name</td>
+            <td>@m.Desc</td>
+        }
+    </tr>
+</table>
