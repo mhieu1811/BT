@@ -27,6 +27,65 @@ namespace Rookie.Ecom.DataAccessor.Data
             {
                 entity.ToTable(name: "Product");
             });
+            builder.Entity<ProductPicture>(entity =>
+            {
+                entity.ToTable(name: "ProductPicture");
+            });
+            builder.Entity<Address>(entity =>
+            {
+                entity.ToTable(name: "Address");
+            });
+            builder.Entity<City>(entity =>
+            {
+                entity.ToTable(name: "City");
+            });
+            builder.Entity<Order>(entity =>
+            {
+                entity.ToTable(name: "Order");
+            });
+            builder.Entity<OrderItem>(entity =>
+            {
+                entity.ToTable(name: "OrderItem");
+                entity.HasKey(key => new
+                {
+                    key.OrderID, key.ProductID
+                });
+            });
+            builder.Entity<ProductDetails>(entity =>
+            {
+                entity.ToTable(name: "ProductDetail");
+                entity.HasKey(key => new
+                {
+                    key.CategoryID,
+                    key.ProductID
+                });
+            });
+            builder.Entity<ProductPicture>(entity =>
+            {
+                entity.ToTable(name: "ProductPicture");
+            });
+            builder.Entity<Rating>(entity =>
+            {
+                entity.ToTable(name: "Rating");
+                entity.HasKey(key => new
+                {
+                    key.OrderID,
+                    key.ProductID,
+                    key.UserID
+                });
+            });
+            builder.Entity<Role>(entity =>
+            {
+                entity.ToTable(name: "Role");
+            });
+            builder.Entity<User>(entity =>
+            {
+                entity.ToTable(name: "User");
+            });
+            builder.Entity<UserDetails>(entity =>
+            {
+                entity.ToTable(name: "UserDetail");
+            });
         }
     }
 }

@@ -30,12 +30,8 @@ namespace Rookie.Ecom.UnitTests.API.Validators
                 .For(m => m.Name = name)
                 .ShouldNotHaveErrorsFor(m => m.Name);
 
-        [Theory]
-        [MemberData(nameof(CategoryTestData.ValidTexts), MemberType = typeof(CategoryTestData))]
-        public void NotHaveErrorWhenPrefixIsvalid(string desc) =>
-           _testRunner
-               .For(m => m.Desc = desc)
-               .ShouldNotHaveErrorsFor(m => m.Desc);
+        
+
 
         [Theory]
         [MemberData(nameof(CategoryTestData.InvalidNames), MemberType = typeof(CategoryTestData))]
@@ -55,7 +51,6 @@ namespace Rookie.Ecom.UnitTests.API.Validators
             {
                 Id = System.Guid.NewGuid(),
                 Name = "test",
-                Desc = desc
             });
 
             result.Errors.Count.Should().Be(1);

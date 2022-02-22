@@ -23,10 +23,7 @@ namespace Rookie.Ecom.Admin.Validators
                .WithMessage(string.Format(ErrorTypes.Common.MaxLengthError, ValidationRules.CategoryRules.MaxLenghCharactersForName))
                .When(m => !string.IsNullOrWhiteSpace(m.Name));
 
-            RuleFor(m => m.Desc)
-               .MaximumLength(ValidationRules.CategoryRules.MaxLenghCharactersForDesc)
-               .WithMessage(string.Format(ErrorTypes.Common.MaxLengthError, ValidationRules.CategoryRules.MaxLenghCharactersForDesc))
-               .When(m => !string.IsNullOrWhiteSpace(m.Desc));
+            
 
             RuleFor(x => x).MustAsync(
              async (dto, cancellation) =>
