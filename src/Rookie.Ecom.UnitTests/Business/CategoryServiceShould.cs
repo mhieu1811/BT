@@ -87,7 +87,7 @@ namespace Rookie.Ecom.UnitTests.Business
             var categoryDto = new CategoryDto()
             {
                 Id = Guid.NewGuid(),
-                Name = "name"
+                CategoryName = "name"
             };
             _categoryRepository.Setup(x => x
                 .GetByAsync(It.IsAny<Expression<Func<Category, bool>>>(), It.IsAny<string>()))

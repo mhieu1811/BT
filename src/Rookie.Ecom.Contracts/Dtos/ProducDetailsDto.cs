@@ -6,18 +6,15 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Rookie.Ecom.DataAccessor.Entities
+namespace Rookie.Ecom.Contracts.Dtos
 {
-    public class ProductDetails
+    public class ProductDetailsDto
     {
-        [Key]
-        [Column(Order = 0)]
+
         public Guid CategoryID { get; set; }
-        public Category Category { get; set; }
-        [Key]
-        [Column(Order = 1)]
+        public CategoryDto Category { get; set; }
         public Guid ProductID { get; set; }
-        public Product Product { get; set; }
+        public ProductDto Product { get; set; }
 
     }
 }

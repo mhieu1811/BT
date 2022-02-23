@@ -39,7 +39,7 @@ namespace Rookie.Ecom.IntegrationTests
             var categoryService = new CategoryService(_categoryRepository, _mapper);
             var categoryController = new CategoryController(categoryService);
 
-            var newCategory = new CategoryDto { Name = "Test Category" };
+            var newCategory = new CategoryDto { CategoryName = "Test Category" };
 
             // Act
             var result = await categoryController.CreateAsync(newCategory);
@@ -51,7 +51,7 @@ namespace Rookie.Ecom.IntegrationTests
             var createdResult = Assert.IsType<CreatedResult>(result.Result);
             var returnValue = Assert.IsType<CategoryDto>(createdResult.Value);
 
-            Assert.Equal(newCategory.Name, returnValue.Name);
+            Assert.Equal(newCategory.CategoryName, returnValue.CategoryName);
 
           
             returnValue.Id.Should().NotBe(Guid.Empty);
@@ -67,7 +67,7 @@ namespace Rookie.Ecom.IntegrationTests
             var categoryService = new CategoryService(_categoryRepository, _mapper);
             var categoryController = new CategoryController(categoryService);
 
-            var newCategory = new CategoryDto { Name = "Laptop 2"};
+            var newCategory = new CategoryDto { CategoryName = "Laptop 2"};
 
             // Act
             var result = await categoryController.CreateAsync(newCategory);
@@ -79,7 +79,7 @@ namespace Rookie.Ecom.IntegrationTests
             var createdResult = Assert.IsType<CreatedResult>(result.Result);
             var returnValue = Assert.IsType<CategoryDto>(createdResult.Value);
 
-            Assert.Equal(newCategory.Name, returnValue.Name);
+            Assert.Equal(newCategory.CategoryName, returnValue.CategoryName);
 
             returnValue.Should().NotBeNull();
         }
