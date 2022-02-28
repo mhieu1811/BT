@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Rookie.Ecom.Business.Interfaces;
 using EnsureThat;
-using Microsoft.AspNetCore.Mvc;
-using Rookie.Ecom.Business.Interfaces;
 using Rookie.Ecom.Contracts;
 using Rookie.Ecom.Contracts.Constants;
 using Rookie.Ecom.Contracts.Dtos;
@@ -22,9 +20,10 @@ namespace Rookie.Ecom.Customer.Pages
 
         public IEnumerable<CategoryDto> Category => _categoryService.GetAllAsync().Result;
          public string Ten { get; set; }
+        
         public void OnGet()
         {
-
+            
         }
     }
 }

@@ -6,8 +6,7 @@ namespace Rookie.Ecom.IntegrationTests.TestData
     {
         public static Category Category() => new()
         {
-            Name = "LA",
-            Desc = "Laptop",
+            CategoryName = "LA",
         };
     }
 }

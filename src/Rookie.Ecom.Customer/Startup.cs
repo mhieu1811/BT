@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,9 +6,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Rookie.Ecom.Business;
+using Rookie.Ecom.Customer.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Rookie.Ecom.Customer
@@ -24,6 +29,23 @@ namespace Rookie.Ecom.Customer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews(x =>
+            {
+                x.Filters.Add(typeof(ValidatorActionFilter));
+            })
+            .AddFluentValidation(fv =>
+            {
+                fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+                fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+            })
+            .AddJsonOptions(ops =>
+            {
+                ops.JsonSerializerOptions.IgnoreNullValues = true;
+                ops.JsonSerializerOptions.WriteIndented = true;
+                ops.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                ops.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+                ops.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
             services.AddRazorPages();
             services.AddHttpContextAccessor();
             services.AddBusinessLayer(Configuration);

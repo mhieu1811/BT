@@ -8,12 +8,13 @@
         <th>Name</th>
         <th>Desc</th>
     </tr>
-    <tr>
+    
         @foreach(var m in Model.Category)
         {
-            <td>@m.Id</td>
-            <td>@m.Name</td>
-            <td>@m.Desc</td>
+            <tr>
+                <td>@m.Id</td>
+                <td>@m.CategoryName</td>
+              </tr>
         }
-    </tr>
+   
 </table>
