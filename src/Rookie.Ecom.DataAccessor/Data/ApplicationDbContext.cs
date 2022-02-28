@@ -6,6 +6,10 @@ namespace Rookie.Ecom.DataAccessor.Data
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Category> Categories { get; set; }
+        public DbSet<City> City { get; set; }
+
+
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -46,19 +50,11 @@ namespace Rookie.Ecom.DataAccessor.Data
             builder.Entity<OrderItem>(entity =>
             {
                 entity.ToTable(name: "OrderItem");
-                entity.HasKey(key => new
-                {
-                    key.OrderID, key.ProductID
-                });
+
             });
             builder.Entity<ProductDetails>(entity =>
             {
                 entity.ToTable(name: "ProductDetail");
-                entity.HasKey(key => new
-                {
-                    key.CategoryID,
-                    key.ProductID
-                });
             });
             builder.Entity<ProductPicture>(entity =>
             {
@@ -67,12 +63,7 @@ namespace Rookie.Ecom.DataAccessor.Data
             builder.Entity<Rating>(entity =>
             {
                 entity.ToTable(name: "Rating");
-                entity.HasKey(key => new
-                {
-                    key.OrderID,
-                    key.ProductID,
-                    key.UserID
-                });
+
             });
             builder.Entity<Role>(entity =>
             {

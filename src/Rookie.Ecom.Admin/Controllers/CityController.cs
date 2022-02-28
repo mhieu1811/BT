@@ -23,7 +23,7 @@ namespace Rookie.Ecom.Admin.Controllers
         public async Task<ActionResult<CityDto>> CreateAsync([FromBody] CityDto CityDto)
         {
             Ensure.Any.IsNotNull(CityDto, nameof(CityDto));
-            var asset = await _CityService.AddAsync(CityDto);
+            var asset =  _CityService.AddAsync(CityDto);
             return Created(Endpoints.City, asset);
         }
 

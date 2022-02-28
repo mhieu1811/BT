@@ -15,7 +15,6 @@ namespace Rookie.Ecom.Contracts.Dtos
         public string PhoneNumber { get; set; }
         public string AddressLine { get; set; }
         public Status Status { get; set; }
-        public ICollection<OrderItemDto> OrderItem { get; set; }
     }
     public enum Status
     {

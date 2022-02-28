@@ -11,6 +11,5 @@ namespace Rookie.Ecom.Contracts.Dtos
     {
         [Required]
         public string CityName { get; set; }
-        public ICollection<AddressDto> Address { get; set; }
     }
 }

@@ -155,32 +155,44 @@ namespace Rookie.Ecom.DataAccessor.Migrations
 
             modelBuilder.Entity("Rookie.Ecom.DataAccessor.Entities.OrderItem", b =>
                 {
-                    b.Property<Guid>("OrderID")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProductID")
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CreatorId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("OrderID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ProductID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Pubished")
+                        .HasColumnType("bit");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("RatingOrderID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("RatingProductID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("RatingUserID")
+                    b.Property<Guid?>("RatingId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("UnitPrice")
                         .HasColumnType("int");
 
-                    b.HasKey("OrderID", "ProductID");
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderID");
 
                     b.HasIndex("ProductID");
 
-                    b.HasIndex("RatingOrderID", "RatingProductID", "RatingUserID");
+                    b.HasIndex("RatingId");
 
                     b.ToTable("OrderItem");
                 });
@@ -232,13 +244,31 @@ namespace Rookie.Ecom.DataAccessor.Migrations
 
             modelBuilder.Entity("Rookie.Ecom.DataAccessor.Entities.ProductDetails", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("CategoryID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CreatorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ProductID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("CategoryID", "ProductID");
+                    b.Property<bool>("Pubished")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryID");
 
                     b.HasIndex("ProductID");
 
@@ -283,22 +313,40 @@ namespace Rookie.Ecom.DataAccessor.Migrations
 
             modelBuilder.Entity("Rookie.Ecom.DataAccessor.Entities.Rating", b =>
                 {
-                    b.Property<Guid>("OrderID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ProductID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserID")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("OrderID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ProductID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Pubished")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Rate")
                         .HasColumnType("int");
 
-                    b.HasKey("OrderID", "ProductID", "UserID");
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderID");
 
                     b.HasIndex("ProductID");
 
@@ -435,19 +483,15 @@ namespace Rookie.Ecom.DataAccessor.Migrations
                 {
                     b.HasOne("Rookie.Ecom.DataAccessor.Entities.Order", "Order")
                         .WithMany("OrderItem")
-                        .HasForeignKey("OrderID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderID");
 
                     b.HasOne("Rookie.Ecom.DataAccessor.Entities.Product", "Product")
                         .WithMany("OrderItems")
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductID");
 
                     b.HasOne("Rookie.Ecom.DataAccessor.Entities.Rating", "Rating")
                         .WithMany()
-                        .HasForeignKey("RatingOrderID", "RatingProductID", "RatingUserID");
+                        .HasForeignKey("RatingId");
 
                     b.Navigation("Order");
 
@@ -488,21 +532,15 @@ namespace Rookie.Ecom.DataAccessor.Migrations
                 {
                     b.HasOne("Rookie.Ecom.DataAccessor.Entities.Order", "Order")
                         .WithMany()
-                        .HasForeignKey("OrderID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderID");
 
                     b.HasOne("Rookie.Ecom.DataAccessor.Entities.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductID");
 
                     b.HasOne("Rookie.Ecom.DataAccessor.Entities.User", "User")
                         .WithMany("Ratings")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserID");
 
                     b.Navigation("Order");
 

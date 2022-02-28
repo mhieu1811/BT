@@ -8,14 +8,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rookie.Ecom.DataAccessor.Entities
 {
-    public class ProductDetails
+    public class ProductDetails:BaseEntity
     {
-        [Key]
-        [Column(Order = 0)]
+        
         public Guid CategoryID { get; set; }
         public Category Category { get; set; }
-        [Key]
-        [Column(Order = 1)]
         public Guid ProductID { get; set; }
         public Product Product { get; set; }
 

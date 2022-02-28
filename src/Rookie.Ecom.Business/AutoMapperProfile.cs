@@ -13,7 +13,7 @@ namespace Rookie.Ecom.Business
 
         private void FromPresentationLayer()
         {
-            CreateMap<CategoryDto, Category>().ForMember(d=>d.ProductDetails,t=>t.Ignore());
+            CreateMap<CategoryDto, Category>();
             CreateMap<ProductDto, Product>();
             CreateMap<AddressDto, Address>();
             CreateMap<CityDto, City>();

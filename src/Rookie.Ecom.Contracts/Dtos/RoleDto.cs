@@ -10,6 +10,6 @@ namespace Rookie.Ecom.Contracts.Dtos
     public class RoleDto:BaseDto
     {
         public string RoleName { get; set; }
-        ICollection<UserDetailsDto> UserDetails  { get; set; }
-    }
+/*        ICollection<UserDetailsDto> UserDetails  { get; set; }
+*/    }
 }

@@ -82,7 +82,7 @@ namespace Rookie.Ecom.Business.Services
             {
                 CurrentPage = assets.CurrentPage,
                 TotalPages = assets.TotalPages,
-                TotalItems = assets.TotalItems,
+                TotalItems = assets.TotalItems, 
                 Items = _mapper.Map<IEnumerable<RatingDto>>(assets.Items)
             };
         }*/

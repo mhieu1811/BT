@@ -9,16 +9,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rookie.Ecom.Contracts.Dtos
 {
-    public class OrderItemDto
+    public class OrderItemDto:BaseDto
     {
 
-        public Guid OrderID { get; set; }
-        public OrderDto Order { get; set; }
-        public Guid ProductID{ get; set; }
-        public ProductDto Product { get; set; }
-        public int Quantity { get; set; }
+        public Guid? OrderID { get; set; }
+/*        public OrderDto Order { get; set; }
+*/        public Guid? ProductID{ get; set; }
+/*        public ProductDto Product { get; set; }
+*/        public int Quantity { get; set; }
         public int UnitPrice { get; set; }
-        public RatingDto Rating { get; set; }
-
+/*        public RatingDto Rating { get; set; }
+*/
     }
 }

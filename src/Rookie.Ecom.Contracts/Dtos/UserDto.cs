@@ -23,8 +23,8 @@ namespace Rookie.Ecom.Contracts.Dtos
         public string Password { get; set; }   
         public string PhoneNumber { get; set; } 
         public bool Status { get; set; }    
-        public ICollection<UserDetailsDto> UserDetails { get; set; } 
+       /* public ICollection<UserDetailsDto> UserDetails { get; set; } 
         public ICollection<AddressDto> Address { get; set; }
-        public ICollection<RatingDto> Ratings { get; set; }
+        public ICollection<RatingDto> Ratings { get; set; }*/
     }
 }

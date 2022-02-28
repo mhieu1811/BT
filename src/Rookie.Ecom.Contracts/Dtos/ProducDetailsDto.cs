@@ -8,13 +8,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rookie.Ecom.Contracts.Dtos
 {
-    public class ProductDetailsDto
+    public class ProductDetailsDto:BaseDto
     {
 
-        public Guid CategoryID { get; set; }
-        public CategoryDto Category { get; set; }
-        public Guid ProductID { get; set; }
-        public ProductDto Product { get; set; }
-
+        public Guid? CategoryID { get; set; }
+/*        public CategoryDto Category { get; set; }
+*/        public Guid? ProductID { get; set; }
+/*        public ProductDto Product { get; set; }
+*/
     }
 }

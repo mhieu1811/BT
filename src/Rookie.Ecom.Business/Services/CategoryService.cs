@@ -69,7 +69,7 @@ namespace Rookie.Ecom.Business.Services
         public async Task<PagedResponseModel<CategoryDto>> PagedQueryAsync(string name, int page, int limit)
         {
             var query = _baseRepository.Entities;
-
+            //string.IsNullOrEmpty 
             query = query.Where(x => string.IsNullOrEmpty(name) || x.CategoryName.Contains(name));
 
             query = query.OrderBy(x => x.CategoryName);

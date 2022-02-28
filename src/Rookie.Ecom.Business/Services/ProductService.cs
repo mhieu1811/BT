@@ -15,6 +15,7 @@ namespace Rookie.Ecom.Business.Services
     public class ProductService : IProductService
     {
         private readonly IBaseRepository<Product> _baseRepository;
+        private readonly IBaseRepository<ProductDetails> test;
         private readonly IMapper _mapper;
 
         public ProductService(IBaseRepository<Product> baseRepository, IMapper mapper)
@@ -49,6 +50,8 @@ namespace Rookie.Ecom.Business.Services
 
         public async Task<ProductDto> GetByIdAsync(Guid id)
         {
+            var query = _baseRepository.Entities;
+
             // map roles and users: collection (roleid, userid)
             // upsert: delete, update, insert
             // input vs db
@@ -57,20 +60,28 @@ namespace Rookie.Ecom.Business.Services
             // input-y vs db-y => update
             // unique, distinct, no-duplicate
             var Product = await _baseRepository.GetByIdAsync(id);
-            return _mapper.Map<ProductDto>(Product);
+
+            return _mapper.Map<ProductDto>(Product );
         }
 
-       /* public async Task<ProductDto> GetByNameAsync(string name)
+        /*public async Task<ProductDto> GetByNameAsync(string name) c 
         {
             var Product = await _baseRepository.GetByAsync(x => x.ProductName == name);
             return _mapper.Map<ProductDto>(Product);
-        }
+        }*/
 
-        public async Task<PagedResponseModel<ProductDto>> PagedQueryAsync(string name, int page, int limit)
+        public async Task<PagedResponseModel<ProductDto>> PagedQueryAsync(string name, int page, int limit, Guid categoryID)
         {
             var query = _baseRepository.Entities;
+            query = query.Join(test.Entities, a => a.Id, b => b.ProductID, (a, b) => new { a, b }).Where(m => m.b.CategoryID.Equals(categoryID)).Select(n => n.a);
+            query = from d in query
+                   join lo in test.Entities on d.Id equals lo.ProductID
+                   where lo.CategoryID==categoryID || string.IsNullOrEmpty(categoryID.ToString())
+                   select d;
 
-            query = query.Where(x => string.IsNullOrEmpty(name) || x.ProductName.Contains(name));
+/*            Guid g = Guid.Parse("3FA85F64-5717-4562-B3FC-2C963F66AFA6");
+*/            
+            query = query.Where(x =>  string.IsNullOrEmpty(name)|| x.ProductName.Contains(name));
 
             query = query.OrderBy(x => x.ProductName);
 
@@ -85,7 +96,6 @@ namespace Rookie.Ecom.Business.Services
                 TotalItems = assets.TotalItems,
                 Items = _mapper.Map<IEnumerable<ProductDto>>(assets.Items)
             };
-        }*/
-
+        }
     }
 }

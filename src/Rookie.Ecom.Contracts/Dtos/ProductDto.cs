@@ -18,7 +18,9 @@ namespace Rookie.Ecom.Contracts.Dtos
         public bool Status { get; set; }
 
         public ICollection<ProductDetailsDto> ProductDetails { get; set; }
-        public ICollection<OrderItemDto> OrderItems { get; set; }
-        public ICollection<ProductPictureDto> ProductPictures { get; set; }
+/*        public ICollection<OrderItemDto> OrderItems { get; set; }
+*/        public ICollection<ProductPictureDto> ProductPictures { get; set; }
+
     }
+
 }
