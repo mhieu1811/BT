@@ -62,17 +62,17 @@ namespace Rookie.Ecom.Business.Services
 
         public async Task<CategoryDto> GetByNameAsync(string name)
         {
-            var category = await _baseRepository.GetByAsync(x => x.CategoryName == name);
+            var category = await _baseRepository.GetByAsync(x => x.Name == name);
             return _mapper.Map<CategoryDto>(category);
         }
 
         public async Task<PagedResponseModel<CategoryDto>> PagedQueryAsync(string name, int page, int limit)
         {
             var query = _baseRepository.Entities;
-            //string.IsNullOrEmpty 
-            query = query.Where(x => string.IsNullOrEmpty(name) || x.CategoryName.Contains(name));
 
-            query = query.OrderBy(x => x.CategoryName);
+            query = query.Where(x => string.IsNullOrEmpty(name) || x.Name.Contains(name));
+
+            query = query.OrderBy(x => x.Name);
 
             var assets = await query
                 .AsNoTracking()

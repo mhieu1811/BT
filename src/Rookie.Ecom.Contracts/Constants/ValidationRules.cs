@@ -16,13 +16,5 @@
             public const int MinLenghCharactersForDesc = 0;
             public const int MaxLenghCharactersForDesc = 100;
         }
-        public static class RoleRules
-        {
-            public const int MinLenghCharactersForName = 0;
-            public const int MaxLenghCharactersForName = 50;
-
-            public const int MinLenghCharactersForDesc = 0;
-            public const int MaxLenghCharactersForDesc = 100;
-        }
     }
 }

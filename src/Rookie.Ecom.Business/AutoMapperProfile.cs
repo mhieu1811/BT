@@ -13,17 +13,11 @@ namespace Rookie.Ecom.Business
 
         private void FromPresentationLayer()
         {
-            CreateMap<CategoryDto, Category>();
+            CreateMap<CategoryDto, Category>()
+               .ForMember(d => d.Products, t => t.Ignore());
+
             CreateMap<ProductDto, Product>();
-            CreateMap<AddressDto, Address>();
-            CreateMap<CityDto, City>();
-            CreateMap<OrderItemDto, OrderItem>();
-            CreateMap<OrderDto, Order>();
-            CreateMap<ProductDetailsDto, ProductDetails>();
-            CreateMap<RatingDto, Rating>();
-            CreateMap<RoleDto, Role>();
-            CreateMap<UserDetailsDto, UserDetails>();
-            CreateMap<UserDto, User>();
+
             CreateMap<ProductPictureDto, ProductPicture>();
         }
 
@@ -31,16 +25,7 @@ namespace Rookie.Ecom.Business
         {
             CreateMap<Category, CategoryDto>();
             CreateMap<Product, ProductDto>();
-            CreateMap<ProductDetails, ProductDetailsDto>();
             CreateMap<ProductPicture, ProductPictureDto>();
-            CreateMap<Address, AddressDto>();
-            CreateMap<City, CityDto>();
-            CreateMap<OrderItem, OrderItemDto>();
-            CreateMap<Order, OrderDto>();
-            CreateMap<Rating, RatingDto>();
-            CreateMap<Role, RoleDto>();
-            CreateMap<UserDetails, UserDetailsDto>();
-            CreateMap<User, UserDto>();
         }
     }
 }

@@ -27,18 +27,22 @@ namespace Rookie.Ecom.UnitTests.API.Validators
         [MemberData(nameof(CategoryTestData.ValidTexts), MemberType = typeof(CategoryTestData))]
         public void NotHaveErrorWhenNameIsvalid(string name) =>
             _testRunner
-                .For(m => m.CategoryName = name)
-                .ShouldNotHaveErrorsFor(m => m.CategoryName);
+                .For(m => m.Name = name)
+                .ShouldNotHaveErrorsFor(m => m.Name);
 
-        
-
+        [Theory]
+        [MemberData(nameof(CategoryTestData.ValidTexts), MemberType = typeof(CategoryTestData))]
+        public void NotHaveErrorWhenPrefixIsvalid(string desc) =>
+           _testRunner
+               .For(m => m.Desc = desc)
+               .ShouldNotHaveErrorsFor(m => m.Desc);
 
         [Theory]
         [MemberData(nameof(CategoryTestData.InvalidNames), MemberType = typeof(CategoryTestData))]
         public void HaveErrorWhenNameIsInvalid(string name, string errorMessage) =>
             _testRunner
-                .For(m => m.CategoryName = name)
-                .ShouldHaveErrorsFor(m => m.CategoryName, errorMessage);
+                .For(m => m.Name = name)
+                .ShouldHaveErrorsFor(m => m.Name, errorMessage);
 
         [Theory]
         [MemberData(nameof(CategoryTestData.InvalidDescs), MemberType = typeof(CategoryTestData))]
@@ -50,7 +54,8 @@ namespace Rookie.Ecom.UnitTests.API.Validators
             ValidationResult result = validator.Validate(new CategoryDto
             {
                 Id = System.Guid.NewGuid(),
-                CategoryName = "test",
+                Name = "test",
+                Desc = desc
             });
 
             result.Errors.Count.Should().Be(1);

@@ -51,7 +51,7 @@ namespace Rookie.Ecom.DataAccessor
                     query = query.Include(includeProperty);
                 }
             }
-            return await query.AsNoTracking().FirstOrDefaultAsync(filter);
+            return await query.FirstOrDefaultAsync(filter);
         }
 
         public async Task<T> GetByIdAsync(object id)
@@ -65,6 +65,5 @@ namespace Rookie.Ecom.DataAccessor
             _dbContext.Update(entity);
             await _dbContext.SaveChangesAsync();
         }
-
     }
 }
